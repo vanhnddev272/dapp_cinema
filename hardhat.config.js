@@ -1,12 +1,18 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 
+const { ALCHEMY_API_URL, METAMASK_PRIVATE_KEY, ETHERSCAN_API_KEY } =
+  process.env;
+
 module.exports = {
-  defaultNetwork: "localhost",
   networks: {
-    localhost: {
-      url: "http://127.0.0.1:8545",
+    sepolia: {
+      url: ALCHEMY_API_URL,
+      accounts: [`0x${METAMASK_PRIVATE_KEY}`],
     },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
   },
   solidity: {
     version: "0.8.11",
